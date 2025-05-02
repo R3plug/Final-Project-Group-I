@@ -12,13 +12,13 @@ const passwordController = require('../controllers/passwordController');
 // All routes in this file require authentication
 router.use(isAuthenticated);
 
-// GET /user/passwords - User password page
-router.get('/passwords', passwordController.getPasswords);
+// GET /passwords/list - User password page
+router.get('/list', passwordController.getPasswords);
 
 //PUT /   - Create New Password
-router.put('/passwords', passwordController.createPassword)
+//router.put('/list', passwordController.createPassword)
 
-// POST /user/settings - Update user settings
-router.post('/passwords', passwordController.updatePassword);
+// POST /passwords/list - Update user settings
+//router.post('/list', passwordController.updatePassword);
 
 module.exports = router;
