@@ -25,6 +25,14 @@ exports.getSettings = (req, res) => {
   });
 };
 
+exports.getPasswords =(req, res) =>{
+    res.render('user/passwords',{
+        title: 'Passwords',
+        user: req.session.user,
+        errors:[]
+    })
+}
+
 /**
  * Update user settings
  */
