@@ -17,6 +17,7 @@
         <li><a href="/about" class="{{#if (isActiveRoute path '/about')}}active{{/if}}">About</a></li>
         
         {{#if isAuthenticated}}
+          <li><a href="/passwords/list" class="{{#if (isActiveRoute path '/passwords/list')}}active{{/if}}">Passwords</a></li>
           <li><a href="/user/profile" class="{{#if (isActiveRoute path '/user/profile')}}active{{/if}}">Profile</a></li>
           <li><a href="/user/settings" class="{{#if (isActiveRoute path '/user/settings')}}active{{/if}}">Settings</a></li>
           <li><a href="/auth/logout">Logout</a></li>

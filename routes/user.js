@@ -21,4 +21,5 @@ router.get('/settings', userController.getSettings);
 // POST /user/settings - Update user settings
 router.post('/settings', userController.updateSettings);
 
+
 module.exports = router;
