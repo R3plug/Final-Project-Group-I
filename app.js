@@ -18,6 +18,7 @@ const csrf = require('csurf');
 const indexRoutes = require('./routes/index');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
+const passwordRoutes = require('./routes/password');
 
 // Import custom middleware
 const { setLocals } = require('./middlewares/locals');
@@ -84,6 +85,8 @@ let sessionConfig = {
     sameSite: 'strict'
   }
 };
+
+
 
 // For now, let's avoid using MongoDB as a session store to prevent index creation issues
 console.log('Using memory session store (not persistent, but will work for development)');
@@ -152,6 +155,8 @@ app.use(setLocals);
 app.use('/', indexRoutes);
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
+app.use('/passwords',passwordRoutes);
+
 
 // Error handling middleware
 app.use(handleErrors);

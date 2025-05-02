@@ -17,7 +17,7 @@
         <li><a href="/about" class="<%= path === '/about' ? 'active' : '' %>">About</a></li>
         
         <% if (isAuthenticated) { %>
-          <li><a href="/user/passwords"class="<%= path === '/user/passwords' ? 'active' : '' %>">Passwords</li>
+          <li><a href="/passwords/list"class="<%= path === '/passwords/list' ? 'active' : '' %>">Passwords</li>
           <li><a href="/user/profile" class="<%= path === '/user/profile' ? 'active' : '' %>">Profile</a></li>
           <li><a href="/user/settings" class="<%= path === '/user/settings' ? 'active' : '' %>">Settings</a></li>
           <li><a href="/auth/logout">Logout</a></li>

@@ -1,13 +1,24 @@
+/**
+ * Password model
+ * Defines the schema for passwords in our application
+ */
 const mongoose =  require('mongoose');
 const bcrypt = require('crypto-js')
 
 const PasswordSchema = new mongoose.Schema({
-    user:String,
+    user:{
+        type:String,
+        default:user.username
+    },
     username:String,
     password:String,
-    notes:String,
-    
-});
+    notes:String},
+    {
+        // Add virtual properties when converting to JSON
+        toJSON: { virtuals: true },
+        toObject: { virtuals: true }  
+    } 
+);
 
 
 /*
