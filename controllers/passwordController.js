@@ -19,6 +19,16 @@ exports.getPasswords = async (req, res) => {
         
     });
 
+exports.putPassword = async (req,res, newPass) =>{
+    Password.insertOne(newPass);
+
+    res.render('passwords/list', {
+        title: 'Passwords',
+        user: req.session.user,
+        passwordList:list,
+
+}
+
     
 
 
