@@ -11,7 +11,9 @@ const PasswordSchema = new mongoose.Schema({
     },
     username:String,
     password:String,
-    notes:String},
+    notes:String,
+    site:String
+},
     {
         // Add virtual properties when converting to JSON
         toJSON: { virtuals: true },
