@@ -26,8 +26,8 @@ exports.postPassword = async (req,res, next) =>{
       try {
         // Check for validation errors
         const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-          return res.status(400).render('password/list', {
+        /*if (!errors.isEmpty()) {
+          return res.status(400).render('passwords/list', {
             title: 'Password',
             errors: errors.array(),
             formData: {
@@ -37,11 +37,12 @@ exports.postPassword = async (req,res, next) =>{
               note: req.body.note,
             }
           });
-        }
+        }*/
     
         // Create new user
         const password = new Password({
-          username: req.body.email,
+          user: req.session.user.username,
+          email: req.body.email,
           password: req.body.password,
           note:req.body.note,
           site:req.body.url,
@@ -50,14 +51,22 @@ exports.postPassword = async (req,res, next) =>{
         // Save user to database
         await password.save();
     
-        // Redirect to login page with success message
-        req.session.flashMessage = { 
-          type: 'success', 
-          text: 'Password Saved!' 
-        };
-        res.redirect('/password/list');
+      
+           
+        
+    
+        
       } catch (error) {
         next(error);
       }
+
+      let list = await Password.find({ user: req.session.user.username });   
+      
+      //finds all passwords from the current user
+          res.render('passwords/list', {
+             title: 'Passwords',
+             user: req.session.user,
+             passwordList:list,
+            });
     };
 

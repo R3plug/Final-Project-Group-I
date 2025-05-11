@@ -1,6 +1,6 @@
 <%- include('../partials/header') %>
 <body>
-<form action="/password/list" method = "POST">
+<form action="/passwords/list" method = "POST">
     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
     
     
@@ -37,21 +37,16 @@
 
         </form>
     </div>
+
     
-    <button id = "addNew">
-        <h3>Add New</h3>
-        <script>
-            const addNew = document.getElementById('addNew');
-            const popUpForm = document.getElementById('popUpForm');
-
-            addNew.addEventListener('click', () => {
-            overlayForPassword.style.display = 'block';
-            popUpForm.style.display = 'block';
-            });
-
-        </script>
-    </button>
-
+    
+    
+    
+    
+    
+    
+    <button id = "add-new">Add New</button>
+</form>
 
 
     
