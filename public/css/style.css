@@ -173,7 +173,7 @@ input:focus {
   z-index: 999;
 }
 
-#popUp-form { 
+#popUpForm { 
   display:block;
   position: fixed;
   top: 0;

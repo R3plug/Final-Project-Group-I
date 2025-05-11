@@ -5,9 +5,8 @@
     
     
     <div id="overlayForPassword">
-        
     </div>
-    <div id="popUp-form">
+    <div id="popUpForm">
         <form>
         <input class="form-group" type="url" 
                 id = "url" 
@@ -35,17 +34,24 @@
         <div class="form-group">
             <input type="submit" value="Submit">
         </div>
+
         </form>
     </div>
+    
+    <button id = "addNew">
+        <h3>Add New</h3>
+        <script>
+            const addNew = document.getElementById('addNew');
+            const popUpForm = document.getElementById('popUpForm');
 
-    
-    
-    
-    
-    
-    
-    <button id = "add-new">Add New</button>
-</form>
+            addNew.addEventListener('click', () => {
+            overlayForPassword.style.display = 'block';
+            popUpForm.style.display = 'block';
+            });
+
+        </script>
+    </button>
+
 
 
     
