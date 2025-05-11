@@ -45,7 +45,20 @@
     
     
     
-    <button id = "add-new">Add New</button>
+    <button id = "addNew">
+        <h3>Add New</h3>
+        <script>
+            const addNew = document.getElementById('addNew');
+            const popUpForm = document.getElementById('popUpForm');
+
+            addNew.addEventListener('click', () => {
+            overlayForPassword.style.display = 'block';
+            popUpForm.style.display = 'block';
+            });
+
+        </script>
+    </button>
+
 </form>
 
 
