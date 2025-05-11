@@ -162,6 +162,42 @@ input:focus {
   border-top: 1px solid var(--border-color);
   text-align: center;
 }
+
+/*
+ * Password page
+ */
+ .passwordHeader>ul{
+    display:grid;
+    list-style: none;
+    grid-template-columns: auto auto auto;
+    width:70rem;
+    
+ }
+
+
+
+ #pwMoreInfo{
+    display:grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+   
+    margin:5px;
+    
+    border: none;
+    font-size: medium;
+    justify-items: center;
+ }
+ #pwMoreInfo:hover{
+    background-color:darkgray;
+ }
+
+ #fields{
+    width:300px;
+    padding-left:10% ;
+    padding-right:25%;
+ }
+
+
 #overlayForPassword {
   display:none;
   position: fixed;
