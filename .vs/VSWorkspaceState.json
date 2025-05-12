@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\public",
+    "\\public\\js",
+    "\\routes",
+    "\\views",
+    "\\views\\auth",
+    "\\views\\layouts",
+    "\\views\\partials",
+    "\\views\\passwords",
+    "\\views\\user"
+  ],
+  "SelectedNode": "\\views\\index.ejs",
+  "PreviewInSolutionExplorer": false
+}

@@ -1,32 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title><%= title %> | Authentication Template</title>
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/style.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
   <header>
-    <nav class="navbar">
-      <div class="logo">
-        <a href="/">Auth Template</a>
+    <div class="navbar">
+      <div class="nav mobile">
+        <label id="menu_toggle_label" for="menu_toggle">
+          <div class="navlink">
+            <i class="material-icons" style="font-size:32px;">menu</i>
+          </div>
+        </label>
+        <div class="vl"></div>
       </div>
-      <ul class="nav-links">
-        <li><a href="/" class="<%= path === '/' ? 'active' : '' %>">Home</a></li>
-        <li><a href="/about" class="<%= path === '/about' ? 'active' : '' %>">About</a></li>
-        
+      <a href="/"><div class="orb"></div></a>
+      <div class="nav mobile">
+        <h3>Novel Password Manager</h3>
+      </div>
+
+      <div class="nav desktop">
+        <div class="vl"></div>
+        <div class="navlink">
+          <i class="material-icons"  style="font-size:32px;">home</i>
+          <a href="/" class="<%= path === '/' ? 'active' : '' %>"><h4  >Home</h4></a>
+        </div>
+        <div class="vl"></div>
+        <div class="navlink">
+          <i class="material-icons" style="font-size:32px;">info</i>
+          <a href="/about" class="<%= path === '/about' ? 'active' : '' %>"><h3>About</h3></a>
+        </div>
+
         <% if (isAuthenticated) { %>
-          <li><a href="/passwords/list"class="<%= path === '/passwords/list' ? 'active' : '' %>">Passwords</li>
-          <li><a href="/user/profile" class="<%= path === '/user/profile' ? 'active' : '' %>">Profile</a></li>
-          <li><a href="/user/settings" class="<%= path === '/user/settings' ? 'active' : '' %>">Settings</a></li>
-          <li><a href="/auth/logout">Logout</a></li>
+          <div class="vl"></div>
+          <div class="navlink">
+            <i class="material-icons" style="font-size:32px;">vpn_key</i>
+            <a href="/passwords/list" class="<%= path === '/passwords/list' ? 'active' : '' %>"><h3>Passwords</h3></a>
+          </div>
+          <div class="vl"></div>
+          <div class="navlink">
+            <i class="material-icons" style="font-size:32px;">person</i>
+            <a href="/user/profile" class="<%= path === '/user/profile' ? 'active' : '' %>"><h3>Profile</h3></a>
+          </div>
+          <div class="vl"></div>
+          <div class="navlink">
+            <i class="material-icons" style="font-size:32px;">settings</i>
+            <a href="/user/settings" class="<%= path === '/user/settings' ? 'active' : '' %>"><h3>Settings</h3></a>
+          </div>
+          <div class="vl"></div>
+          <div class="navlink">
+            <i class="material-icons" style="font-size:32px;">logout</i>
+            <a href="/auth/logout"><h3>Logout</h3></a>
+          </div>
         <% } else { %>
-          <li><a href="/auth/login" class="<%= path === '/auth/login' ? 'active' : '' %>">Login</a></li>
-          <li><a href="/auth/register" class="<%= path === '/auth/register' ? 'active' : '' %>">Register</a></li>
+          <div class="vl"></div>
+          <div class="navlink">
+            <i class="material-icons" style="font-size:32px;">login</i>
+            <a href="/auth/login" class="<%= path === '/auth/login' ? 'active' : '' %>"><h3>Login</h3></a>
+          </div>
+          <div class="vl"></div>
+          <div class="navlink">
+            <i class="material-icons" style="font-size:32px;">person_add</i>
+            <a href="/auth/register" class="<%= path === '/auth/register' ? 'active' : '' %>"><h3>Register</h3></a>
+          </div>
         <% } %>
-      </ul>
-    </nav>
+      </div>
+    </div>
+   
   </header>
 
   <main>
