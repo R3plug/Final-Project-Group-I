@@ -35,10 +35,14 @@
             <input type="submit" value="Submit">
         </div>
 
+        
+
         </form>
     </div>
 
 </form>
+
+
 
 
 
@@ -52,27 +56,31 @@
         <li >Website</li>
         <li>Email</li>
         <li>Password</li>
+        <li>Notes</li>
     </ul>
 </nav>
   
 <% passwordList.forEach(password => { %>
     <div class="passwordInfo">
         <button id="pwMoreInfo">
-            <div id="fields">
+            <div class="fields">
                 <%= password.site %> 
             </div>
-            <div id="fields">
+            <div class="fields">
                 <%= password.email%>
             </div> 
-            <div id="fields">
+            <div class="fields">
                 <%= password.password %>
             </div>
+            <div class="fields">
+                <%= password.notes %>
+            </div>
+            
         </button>                  
     </div>
 
+    
 <% })%>
-
-
 
 
 
@@ -85,6 +93,8 @@
     const popUpForm = document.getElementById('popUpForm');
     const overlay = document.getElementById('overlayForPassword');
     const update = document.getElementById('overlayForUpdate');
+    const existingInfo = document.getElementById('pwMoreInfo');
+    const displayData = document.getElementById('displayData');
 
     addNewBtn.addEventListener('click', () => {
       overlay.style.display = 'block';
@@ -97,7 +107,17 @@
         popUpForm.style.display = 'block';
       });
     });
+    existingInfo.addEventListener('click', () => {
+      overlay.style.display = 'block';
+      popUpForm.style.display = 'block';
     });
+
+    overlay.addEventListener('click', () => {
+    popUpForm.style.display = 'none';
+    overlay.style.display = 'none';
+  });
+    });
+   
     
 
 </script>
