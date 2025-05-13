@@ -8,10 +8,19 @@ const mongoose =  require('mongoose');
 const PasswordSchema = new mongoose.Schema({
     user:{
         type:String,
+        required:[true, "username required"],
     },
-    username:String,
-    password:String,
-    notes:String},
+    email:{
+        type:String,
+        require:[true,"Email required"]
+    },
+    password:{
+        type:String,
+        required:[true, "Password required"]
+    },
+    notes:String,
+    site:String
+},
     {
         // Add virtual properties when converting to JSON
         toJSON: { virtuals: true },

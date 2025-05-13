@@ -1,11 +1,75 @@
 <%- include('../partials/header') %>
 <body>
-<button id = "add-new">Add New</button>
-
+<form action="/passwords/list" method = "POST">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
     
+    
+    <div id="overlayForPassword">
+    </div>
+    <div id="popUpForm">
+        <form>
+        <input class="form-group" type="url" 
+                id = "url" 
+                name ="url" 
+                placeholder="URL"
+                >
+        <input class="form-group" type="email" 
+            id="email" 
+            name ="email" 
+            placeholder="Email" 
+            required
+            >
+        <input class="form-group" type="password" 
+            id = "password" 
+            name ="password" 
+            placeholder ="Password" 
+            required minlength = "12"
+            >
+        <input class="form-group" type="text" 
+            id = "note" 
+            name = "note" 
+            placeholder="Notes"
+            >
+
+        <div class="form-group">
+            <input type="submit" value="Submit">
+        </div>
+
+        </form>
+    </div>
+
+</form>
+
+
+
+<button id = "addNew">
+    <h3>Add New</h3>   
+</button>
+
+
+<nav class = "passwordHeader">
+    <ul>
+        <li >Website</li>
+        <li>Email</li>
+        <li>Password</li>
+    </ul>
+</nav>
+  
 <% passwordList.forEach(password => { %>
-<p><%= password.site %></p>
-<p><%= password.password %></p>
+    <div class="passwordInfo">
+        <button id="pwMoreInfo">
+            <div id="fields">
+                <%= password.site %> 
+            </div>
+            <div id="fields">
+                <%= password.email%>
+            </div> 
+            <div id="fields">
+                <%= password.password %>
+            </div>
+        </button>                  
+    </div>
+
 <% })%>
 
 
@@ -15,6 +79,27 @@
 
 
 
+<script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+    const addNewBtn = document.getElementById('addNew');
+    const popUpForm = document.getElementById('popUpForm');
+    const overlay = document.getElementById('overlayForPassword');
+    const update = document.getElementById('overlayForUpdate');
 
+    addNewBtn.addEventListener('click', () => {
+      overlay.style.display = 'block';
+      popUpForm.style.display = 'block';
+    });
+
+    document.querySelectorAll('.pwMoreInfo').forEach(btn => {
+      btn.addEventListener('click', () => {
+        update.style.display = 'block';
+        popUpForm.style.display = 'block';
+      });
+    });
+    });
+    
+
+</script>
 </body>
 <% include('../partials/footer') %>
