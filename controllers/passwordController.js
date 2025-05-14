@@ -3,7 +3,38 @@
  * Handles logic for password-related pages and actions
  */
 const Password =require('../models/Password');
+const User = require('../models/Password');
+
 const { validationResult } = require('express-validator');
+// controllers/passwordController.js
+
+exports.deletePassword = async (req, res) => {
+  try {
+    await User.findByIdAndDelete(req.body.id);
+    res.redirect('/passwords/list');
+  } catch (error) {
+    console.error('Delete error:', error);
+    res.status(500).send('Error deleting password');
+  }
+};
+
+exports.updatePassword = async (req, res) => {
+  const { id, url, email, password, note } = req.body;
+
+  try {
+    await Password.findByIdAndUpdate(id, {
+      site: url,
+      email,
+      password,
+      notes: note,
+    });
+
+    res.redirect('/passwords/list');
+  } catch (error) {
+    console.error('Update failed:', error);
+    res.status(500).send('Failed to update password');
+  }
+};
 
 /*
  * Displays passwords page
@@ -44,7 +75,7 @@ exports.postPassword = async (req,res, next) =>{
           user: req.session.user.username,
           email: req.body.email,
           password: req.body.password,
-          notes:req.body.notes,
+          note:req.body.note,
           site:req.body.url,
         });
     
