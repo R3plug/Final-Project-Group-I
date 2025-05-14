@@ -54,6 +54,12 @@ if (process.env.MONGODB_URI) {
 }
 
 // Configure Express
+app.use((req, res, next) => {
+  res.locals.currentPath = req.path;
+  res.locals.isAuthenticated = req.isAuthenticated?.() || false;
+  next();
+});
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
