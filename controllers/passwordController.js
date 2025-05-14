@@ -44,7 +44,7 @@ exports.postPassword = async (req,res, next) =>{
           user: req.session.user.username,
           email: req.body.email,
           password: req.body.password,
-          note:req.body.note,
+          notes:req.body.notes,
           site:req.body.url,
         });
     
