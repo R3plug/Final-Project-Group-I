@@ -610,7 +610,7 @@ input:focus {
     background: linear-gradient(180deg, rgba(83, 85, 87, 0.9) 0%, rgba(14, 15, 15, 0.9) 100%);
     box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.3), inset 0px 2px 1px rgba(255, 255, 255, 0.3), inset 0px -2px 1px rgba(0, 0, 0, 0.4);
     border-radius: 15px
-    padding: 2rem;
+    ;padding: 2rem;
     margin-bottom: 2rem;
 }
 
@@ -723,7 +723,7 @@ i {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-fill-color: transparent;
+    
 }
 
 #curpage {
@@ -750,7 +750,7 @@ h1 {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-fill-color: transparent;
+    
 }
 
 h2 {
@@ -766,7 +766,7 @@ h2 {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-fill-color: transparent;
+    
 }
 
 h3 {
@@ -782,7 +782,7 @@ h3 {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-fill-color: transparent;
+    
 }
 
 h4 {
@@ -798,7 +798,7 @@ h4 {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-fill-color: transparent;
+    
 }
 
 ul {
