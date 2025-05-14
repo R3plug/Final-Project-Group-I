@@ -36,6 +36,10 @@ router.get('/list', isAuthenticated, passwordController.getPasswords);
 
 //Post /passwords/list   - Create New Password
 router.post('/list',isAuthenticated, passwordValidation, passwordController.postPassword)
+// POST /passwords/update - Update an existing password entry
+router.post('/update', isAuthenticated, passwordController.updatePassword);
+// Deleting the exisitng passwork entry
+router.post('/delete', isAuthenticated, passwordController.deletePassword);
 
 // POST /passwords/list - Update user settings
 //router.post('/list', passwordController.updatePassword);
