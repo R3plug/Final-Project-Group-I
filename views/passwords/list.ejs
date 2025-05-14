@@ -1,13 +1,15 @@
 <%- include('../partials/header') %>
 <body>
-<form action="/passwords/list" method = "POST">
+    <form id="editForm" action="/passwords/update" method="POST">
+
     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-    
+    <input type="hidden" id="editId" name="id">
+
     
     <div id="overlayForPassword">
     </div>
     <div id="popUpForm">
-        <form>
+        
         <input class="form-group" type="url" 
                 id = "url" 
                 name ="url" 
@@ -22,12 +24,12 @@
         <input class="form-group" type="password" 
             id = "password" 
             name ="password" 
-            placeholder ="Password recommended minimum 12 characters" 
-            
+            placeholder ="Password" 
+            required minlength = "12"
             >
         <input class="form-group" type="text" 
-            id = "notes" 
-            name = "notes" 
+            id = "note" 
+            name = "note" 
             placeholder="Notes"
             >
 
@@ -37,54 +39,91 @@
 
         
 
-        </form>
+       
     </div>
 
 </form>
 
 
-
-
-
-<button id = "addNew">
-    <h3>Add New</h3>   
-</button>
-
-
-<nav class = "passwordHeader">
-    <ul>
-        <li >Website</li>
-        <li>Email</li>
-        <li>Password</li>
-        <li>Notes</li>
-    </ul>
-</nav>
+<div class="passwordActions">
+    <button id="addNew" class="primary-btn">+ Add New</button>
+  </div>
   
-<% passwordList.forEach(password => { %>
-    <div class="passwordInfo">
-        <button id="pwMoreInfo">
-            <div class="fields">
-                <%= password.site %> 
-            </div>
-            <div class="fields">
-                <%= password.email%>
-            </div> 
-            <div class="fields">
-                <%= password.password %>
-            </div>
-            <div class="fields">
-                <%= password.notes %>
-            </div>
-            
-        </button>                  
-    </div>
+  <div class="passwordTable">
 
+<div class="passwordContainer">
+    <div class="passwordHeaderGrid">
+        <div class="headerCell"><u>Website</u></div>
+        <div class="headerCell" style="margin-left: 30px;"><u>Email</u></div>
+        <div class="headerCell" style="margin-left: 10px;"><u>Password</u></div>
+        <div class="headerCell" style="margin-left: 35px;"><u>Notes</u></div>
+      </div>
+      
+  
+      <% passwordList.forEach(password => { %>
+        <!-- DESKTOP VIEW: show when screen is wide -->
+        <div class="pwMoreInfo">
+            <div class="fields"><%= password.site %></div>
+            <div class="fields"><%= password.email %></div>
+            <div class="fields"><%= password.password %></div>
+            <div class="fields"><%= password.notes %></div>
+          
+            <!-- 3-dot menu -->
+            <div class="menu-wrapper" style="margin-right: 30px;">
+              <button class="menu-button">⋮</button>
+              <div class="menu-dropdown">
+                <button class="edit-btn"
+                data-id="<%= password._id %>"
+                data-site="<%= password.site %>"
+                data-email="<%= password.email %>"
+                data-password="<%= password.password %>"
+                data-note="<%= password.notes %>">
+                Edit
+              </button>
+                
+              <form action="/passwords/delete" method="POST" style="margin:0;">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <input type="hidden" name="id" value="<%= password._id %>">
+                <button type="submit">Delete</button>
+              </form>
+              </div>
+            </div>
+          </div>
+          
     
-<% })%>
+        <!-- MOBILE VIEW: show when screen is small -->
+        <div class="passwordCard">
+            <p><strong>Website:</strong> <%= password.site %></p>
+            <p><strong>Email:</strong> <%= password.email %></p>
+            <p><strong>Password:</strong> <%= password.password %></p>
+            <p><strong>Notes:</strong> <%= password.notes %></p>
+            
+            <!-- 3-dot menu for mobile -->
+            <div class="menu-wrapper mobile-menu">
+                <button class="menu-button">⋮</button>
+                <div class="menu-dropdown">
+                    <button type = "button" class="edit-btn"
+                    
+                    data-id="<%= password._id %>"
+                    data-site="<%= password.site %>"
+                    data-email="<%= password.email %>"
+                    data-password="<%= password.password %>"
+                    data-note="<%= password.notes %>">
+                    Edit</button>
+                    <form action="/passwords/delete" method="POST" style="margin:0;">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <input type="hidden" name="id" value="<%= password._id %>">
+                        <button type="submit">Delete</button>
+                      </form>                </div>
+            </div>
+        </div>
+        
+    <% }) %>
+    
+  </div>
+  
 
-
-
-
+</div>
 
 
 <script>
@@ -92,21 +131,34 @@
     const addNewBtn = document.getElementById('addNew');
     const popUpForm = document.getElementById('popUpForm');
     const overlay = document.getElementById('overlayForPassword');
-    const update = document.getElementById('overlayForUpdate');
-    const existingInfo = document.getElementById('pwMoreInfo');
-    const displayData = document.getElementById('displayData');
+
 
     addNewBtn.addEventListener('click', () => {
       overlay.style.display = 'block';
       popUpForm.style.display = 'block';
     });
 
-    document.querySelectorAll('.pwMoreInfo').forEach(btn => {
-      btn.addEventListener('click', () => {
-        update.style.display = 'block';
-        popUpForm.style.display = 'block';
-      });
-    });
+
+  document.querySelectorAll('.edit-btn').forEach(btn => {
+  btn.addEventListener('click', function () {
+    const id = this.dataset.id;
+    const site = this.dataset.site;
+    const email = this.dataset.email;
+    const password = this.dataset.password;
+    const note = this.dataset.note;
+
+    document.getElementById('editId').value = id;
+    document.getElementById('url').value = site;
+    document.getElementById('email').value = email;
+    document.getElementById('password').value = password;
+    document.getElementById('note').value = note;
+
+    overlay.style.display = 'block';
+    popUpForm.style.display = 'block';
+  });
+});
+
+
     existingInfo.addEventListener('click', () => {
       overlay.style.display = 'block';
       popUpForm.style.display = 'block';
@@ -116,9 +168,34 @@
     popUpForm.style.display = 'none';
     overlay.style.display = 'none';
   });
+
+
+
     });
    
-    
+    document.querySelectorAll('.pwMoreInfo').forEach(btn => {
+    btn.addEventListener('click', () => {
+        overlay.style.display = 'block';
+        popUpForm.style.display = 'block';
+    });
+    });
+
+document.querySelectorAll('.menu-button').forEach(btn => {
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      const dropdown = this.nextElementSibling;
+      document.querySelectorAll('.menu-dropdown').forEach(menu => {
+        if (menu !== dropdown) menu.style.display = 'none';
+      });
+      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
+  });
+
+  // Close menu if clicked outside
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.menu-dropdown').forEach(menu => menu.style.display = 'none');
+  });
+
 
 </script>
 </body>
