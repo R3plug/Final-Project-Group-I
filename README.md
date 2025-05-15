@@ -10,6 +10,11 @@ The Password manager will build on the provided user management and authenticati
 * password change history
 
 ## Project Presentation
+### Video
+https://drive.google.com/file/d/1TtzCwPmqjHzJl9bwP_TIpET7K7_S4jr6/view?usp=drive_link
+
+### Render
+https://csc317-group-i.onrender.com/
 
 ## Project Breakdown
 
