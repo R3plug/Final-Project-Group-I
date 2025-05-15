@@ -37,6 +37,10 @@
             <input type="submit" value="Submit">
         </div>
 
+        <div class="form-group">
+          <button type="button" id="cancelBtn">Cancel</button>
+      </div>
+
         
 
        
@@ -131,6 +135,12 @@
     const addNewBtn = document.getElementById('addNew');
     const popUpForm = document.getElementById('popUpForm');
     const overlay = document.getElementById('overlayForPassword');
+    const cancelBtn = document.getElementById('cancelBtn');
+
+    cancelBtn.addEventListener('click', () => {
+      popUpForm.style.display = 'none';
+      overlay.style.display = 'none';
+    });
 
 
     addNewBtn.addEventListener('click', () => {
@@ -196,6 +206,7 @@ document.querySelectorAll('.menu-button').forEach(btn => {
     document.querySelectorAll('.menu-dropdown').forEach(menu => menu.style.display = 'none');
   });
 
+  
 
 </script>
 </body>
