@@ -3,13 +3,13 @@
     <form id="editForm" action="/passwords/update" method="POST">
 
     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-    <input type="hidden" id="editId" name="id">
 
     
     <div id="overlayForPassword">
     </div>
     <div id="popUpForm">
-        
+        <input type="hidden" id="editId" name="id">
+
         <input class="form-group" type="url" 
                 id = "url" 
                 name ="url" 
@@ -40,7 +40,6 @@
         <div class="form-group">
           <button type="button" id="cancelBtn">Cancel</button>
       </div>
-
         
 
        
@@ -131,59 +130,50 @@
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', ()=>{
-    const addNewBtn = document.getElementById('addNew');
-    const popUpForm = document.getElementById('popUpForm');
-    const overlay = document.getElementById('overlayForPassword');
-    const cancelBtn = document.getElementById('cancelBtn');
-
+ document.addEventListener('DOMContentLoaded', () => {
+  const addNewBtn = document.getElementById('addNew');
+  const popUpForm = document.getElementById('popUpForm');
+  const overlay = document.getElementById('overlayForPassword');
+  const form = document.getElementById('editForm');
+  const cancelBtn = document.getElementById('cancelBtn');
+  
+  //Cancel button
     cancelBtn.addEventListener('click', () => {
       popUpForm.style.display = 'none';
       overlay.style.display = 'none';
     });
 
+  // Add new
+  addNewBtn.addEventListener('click', () => {
+    document.getElementById('editId').value = "";
+    form.action = "/passwords/list";
+    overlay.style.display = 'block';
+    popUpForm.style.display = 'block';
+  });
 
-    addNewBtn.addEventListener('click', () => {
-      overlay.style.display = 'block';
-      popUpForm.style.display = 'block';
-    });
-
-    overlay.addEventListener('click', () => {
+  overlay.addEventListener('click', () => {
     popUpForm.style.display = 'none';
     overlay.style.display = 'none';
   });
 
-
+  // Edit
   document.querySelectorAll('.edit-btn').forEach(btn => {
-  btn.addEventListener('click', function () {
-    const id = this.dataset.id;
-    const site = this.dataset.site;
-    const email = this.dataset.email;
-    const password = this.dataset.password;
-    const note = this.dataset.note;
+    btn.addEventListener('click', function () {
+      form.action = "/passwords/update";
+      document.getElementById('editId').value = this.dataset.id;
+      document.getElementById('url').value = this.dataset.site;
+      document.getElementById('email').value = this.dataset.email;
+      document.getElementById('password').value = this.dataset.password;
+      document.getElementById('note').value = this.dataset.note;
 
-    document.getElementById('editId').value = id;
-    document.getElementById('url').value = site;
-    document.getElementById('email').value = email;
-    document.getElementById('password').value = password;
-    document.getElementById('note').value = note;
-
-    overlay.style.display = 'block';
-    popUpForm.style.display = 'block';
+      overlay.style.display = 'block';
+      popUpForm.style.display = 'block';
+    });
   });
-});
 
 
-    });
-   
-    document.querySelectorAll('.pwMoreInfo').forEach(btn => {
-    btn.addEventListener('click', () => {
-        overlay.style.display = 'block';
-        popUpForm.style.display = 'block';
-    });
-    });
 
-document.querySelectorAll('.menu-button').forEach(btn => {
+  document.querySelectorAll('.menu-button').forEach(btn => {
     btn.addEventListener('click', function (e) {
       e.stopPropagation();
       const dropdown = this.nextElementSibling;
@@ -194,13 +184,11 @@ document.querySelectorAll('.menu-button').forEach(btn => {
     });
   });
 
-  // Close menu if clicked outside
   document.addEventListener('click', () => {
     document.querySelectorAll('.menu-dropdown').forEach(menu => menu.style.display = 'none');
   });
-
-  
+});
 
 </script>
 </body>
-<% include('../partials/footer') %>
+<%- include('../partials/footer') %>
