@@ -87,11 +87,18 @@ header {
 }
 
 /* Logo styling */
-.logo a {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--primary-color);
-    text-decoration: none;
+.logo {
+    height: 36px;
+    width: 36px;
+    transition: all 300ms ease;
+    background: url("/images/frutty.png") no-repeat;    
+    background-size: 36px;
+}
+
+.logo:hover {
+    transition: all 300ms ease;
+    background: url("/images/frutty.png") no-repeat;
+    background-size: 36px;
 }
 
 /* Individual link wrapper */
